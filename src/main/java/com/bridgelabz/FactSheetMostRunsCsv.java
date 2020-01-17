@@ -46,6 +46,61 @@ public class FactSheetMostRunsCsv {
     @CsvBindByName(column = "6s", required = true)
     public int six;
 
+    public int getPos() {
+        return pos;
+    }
+
+    public String getPlayer() {
+        return player;
+    }
+
+    public int getMat() {
+        return mat;
+    }
+
+    public int getInns() {
+        return inns;
+    }
+
+    public int getNo() {
+        return no;
+    }
+
+    public int getRuns() {
+        return runs;
+    }
+
+    public int getHs() {
+        return hs;
+    }
+
+    public double getAvg() {
+        return avg;
+    }
+
+    public double getBf() {
+        return bf;
+    }
+
+    public double getSr() {
+        return sr;
+    }
+
+    public int getCentury() {
+        return century;
+    }
+
+    public int getHalfCentury() {
+        return halfCentury;
+    }
+
+    public int getFour() {
+        return four;
+    }
+
+    public int getSix() {
+        return six;
+    }
 
     @Override
     public String toString() {

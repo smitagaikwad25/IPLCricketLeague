@@ -4,6 +4,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.Iterator;
+import java.util.List;
 
 public class CricketAnalyserTest {
 
@@ -15,6 +16,7 @@ public class CricketAnalyserTest {
     public void givenFileIPL2019FactsheetMostRuns_WhenCorrect_ShouldReturnData() throws CricketLeagueException {
         CricketLeagueAnalyser cricketLeagueAnalyser = new CricketLeagueAnalyser();
         int cricketLeagueData = cricketLeagueAnalyser.loadFactsheetMostRunsFile(FACTS_SHEET_MOST_RUNS);
+        System.out.println(cricketLeagueData);
         Assert.assertEquals(101, cricketLeagueData);
     }
 
@@ -23,6 +25,18 @@ public class CricketAnalyserTest {
         try {
             CricketLeagueAnalyser cricketLeagueAnalyser = new CricketLeagueAnalyser();
             int cricketLeagueData = cricketLeagueAnalyser.loadFactsheetMostRunsFile(WORNG_FACTS_SHEET_MOST_RUNS);
+        } catch (CricketLeagueException e) {
+            Assert.assertEquals(CricketLeagueException.ExceptionType.CENSUS_FILE_PROBLEM, e.type);
+        }
+    }
+
+    @Test
+    public void givenFileIPL2019FactsheetMostRuns_WhenCorrect_ShouldReturnCricketersAvg() {
+        try {
+            CricketLeagueAnalyser cricketLeagueAnalyser = new CricketLeagueAnalyser();
+            cricketLeagueAnalyser.loadFactsheetMostRunsFile(FACTS_SHEET_MOST_RUNS);
+            List<FactSheetMostRunsCsv> cricketLeagueData = cricketLeagueAnalyser.sortingToGetTopBattingAvgOfCricketers();
+            Assert.assertEquals(83.2, cricketLeagueData.get(0).getAvg(),0);
         } catch (CricketLeagueException e) {
             Assert.assertEquals(CricketLeagueException.ExceptionType.CENSUS_FILE_PROBLEM, e.type);
         }

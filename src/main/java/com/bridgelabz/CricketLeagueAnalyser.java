@@ -44,4 +44,12 @@ public class CricketLeagueAnalyser {
         return topBattingAvg;
     }
 
+    public List<FactSheetMostRunsCsv> sortingToKnowTopStrikingRatesOfTheBatsman() throws CricketLeagueException {
+        if (mostRunCSVList == null ||  mostRunCSVList.size() == 0){
+            throw new CricketLeagueException("No Census Data",CricketLeagueException.ExceptionType.No_Census_Data);
+        }
+        List topStrikingRates = mostRunCSVList.stream().sorted(Comparator.comparing(FactSheetMostRunsCsv::getSr).reversed()).collect(Collectors.toList());
+        System.out.println(topStrikingRates);
+        return topStrikingRates;
+    }
 }

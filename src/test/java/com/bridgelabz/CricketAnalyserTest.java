@@ -31,12 +31,26 @@ public class CricketAnalyserTest {
     }
 
     @Test
-    public void givenFileIPL2019FactsheetMostRuns_WhenCorrect_ShouldReturnCricketersAvg() {
+    public void givenFileIPL2019FactsheetMostRuns_WhenSort_ShouldReturnCricketersAvg() {
         try {
             CricketLeagueAnalyser cricketLeagueAnalyser = new CricketLeagueAnalyser();
             cricketLeagueAnalyser.loadFactsheetMostRunsFile(FACTS_SHEET_MOST_RUNS);
             List<FactSheetMostRunsCsv> cricketLeagueData = cricketLeagueAnalyser.sortingToGetTopBattingAvgOfCricketers();
             Assert.assertEquals(83.2, cricketLeagueData.get(0).getAvg(),0);
+        } catch (CricketLeagueException e) {
+            Assert.assertEquals(CricketLeagueException.ExceptionType.CENSUS_FILE_PROBLEM, e.type);
+        }
+    }
+
+    @Test
+    public void givenFileIPL2019FactsheetMostRuns_WhenSort_ShouldReturnCricketers() {
+        try {
+            CricketLeagueAnalyser cricketLeagueAnalyser = new CricketLeagueAnalyser();
+            cricketLeagueAnalyser.loadFactsheetMostRunsFile(FACTS_SHEET_MOST_RUNS);
+            List<FactSheetMostRunsCsv> cricketLeagueData = cricketLeagueAnalyser.sortingToKnowTopStrikingRatesOfTheBatsman();
+            Assert.assertEquals(333.33, cricketLeagueData.get(0).getSr(),0);
+            Assert.assertEquals(63.15, cricketLeagueData.get(100).getSr(),0);
+
         } catch (CricketLeagueException e) {
             Assert.assertEquals(CricketLeagueException.ExceptionType.CENSUS_FILE_PROBLEM, e.type);
         }

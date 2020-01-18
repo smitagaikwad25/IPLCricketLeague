@@ -34,8 +34,8 @@ public class CricketAnalyserTest {
         try {
             CricketLeagueAnalyser cricketLeagueAnalyser = new CricketLeagueAnalyser();
             cricketLeagueAnalyser.loadFactsheetMostRunsFile(FACTS_SHEET_MOST_RUNS);
-            List<BatsmanDetailsCsv> cricketLeagueData = cricketLeagueAnalyser.sortingToGetTopBattingAvgOfCricketers();
-            Assert.assertEquals(83.2, cricketLeagueData.get(0).getAvg(), 0);
+            List<BatsmanDetails> cricketLeagueData = cricketLeagueAnalyser.sortingToGetTopBattingAvgOfCricketers();
+            Assert.assertEquals(83.2, cricketLeagueData.get(0).avg, 0);
         } catch (CricketLeagueException e) {
             Assert.assertEquals(CricketLeagueException.ExceptionType.FILE_PROBLEM, e.type);
         }
@@ -46,9 +46,9 @@ public class CricketAnalyserTest {
         try {
             CricketLeagueAnalyser cricketLeagueAnalyser = new CricketLeagueAnalyser();
             cricketLeagueAnalyser.loadFactsheetMostRunsFile(FACTS_SHEET_MOST_RUNS);
-            List<BatsmanDetailsCsv> cricketLeagueData = cricketLeagueAnalyser.sortingToKnowTopStrikingRatesOfTheBatsman();
-            Assert.assertEquals(333.33, cricketLeagueData.get(0).getSr(), 0);
-            Assert.assertEquals(63.15, cricketLeagueData.get(100).getSr(), 0);
+            List<BatsmanDetails> cricketLeagueData = cricketLeagueAnalyser.sortingToKnowTopStrikingRatesOfTheBatsman();
+            Assert.assertEquals(333.33, cricketLeagueData.get(0).sr, 0);
+            Assert.assertEquals(63.15, cricketLeagueData.get(100).sr, 0);
 
         } catch (CricketLeagueException e) {
             Assert.assertEquals(CricketLeagueException.ExceptionType.FILE_PROBLEM, e.type);
@@ -60,7 +60,7 @@ public class CricketAnalyserTest {
         try {
             CricketLeagueAnalyser cricketLeagueAnalyser = new CricketLeagueAnalyser();
             cricketLeagueAnalyser.loadFactsheetMostRunsFile(FACTS_SHEET_MOST_RUNS);
-            List<BatsmanDetailsCsv> cricketLeagueData = cricketLeagueAnalyser.sortingAccordingNumberOfFourAndNumberOfSix();
+            List<BatsmanDetails> cricketLeagueData = cricketLeagueAnalyser.sortingAccordingNumberOfFourAndNumberOfSix();
             Assert.assertEquals("Andre Russell", cricketLeagueData.get(0).player);
             Assert.assertEquals("Shakib Al Hasan", cricketLeagueData.get(100).player);
 

@@ -2,7 +2,7 @@ package com.bridgelabz;
 
 import com.opencsv.bean.CsvBindByName;
 
-public class FactSheetMostRunsCsv {
+public class BatsmanDetailsCsv {
 
     @CsvBindByName(column = "POS", required = true)
     public int pos;
@@ -104,7 +104,7 @@ public class FactSheetMostRunsCsv {
 
     @Override
     public String toString() {
-        return "FactSheetMostRunsCsv{" +
+        return "BatsmanDetailsCsv{" +
                 "pos=" + pos +
                 ", player='" + player + '\'' +
                 ", mat=" + mat +

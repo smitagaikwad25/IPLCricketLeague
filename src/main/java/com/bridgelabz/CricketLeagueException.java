@@ -2,7 +2,7 @@ package com.bridgelabz;
 
 public class CricketLeagueException extends Exception  {
     enum ExceptionType {
-        No_Census_Data,CENSUS_FILE_PROBLEM
+        NO_DATA_AVAILABLE, FILE_PROBLEM
     }
 
     ExceptionType type;

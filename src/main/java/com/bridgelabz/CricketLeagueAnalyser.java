@@ -8,14 +8,12 @@ import java.io.IOException;
 import java.io.Reader;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class CricketLeagueAnalyser {
 
-  List<FactSheetMostRunsCsv> mostRunCSVList = new ArrayList<>();
+    List<FactSheetMostRunsCsv> mostRunCSVList = new ArrayList<>();
 
     public int loadFactsheetMostRunsFile(String csvFilePath) throws CricketLeagueException {
         try (Reader reader = Files.newBufferedReader(Paths.get(csvFilePath));) {
@@ -36,8 +34,8 @@ public class CricketLeagueAnalyser {
     }
 
     public List<FactSheetMostRunsCsv> sortingToGetTopBattingAvgOfCricketers() throws CricketLeagueException {
-        if (mostRunCSVList == null ||  mostRunCSVList.size() == 0){
-            throw new CricketLeagueException("No Census Data",CricketLeagueException.ExceptionType.No_Census_Data);
+        if (mostRunCSVList == null || mostRunCSVList.size() == 0) {
+            throw new CricketLeagueException("No Census Data", CricketLeagueException.ExceptionType.No_Census_Data);
         }
         List topBattingAvg = mostRunCSVList.stream().sorted(Comparator.comparing(FactSheetMostRunsCsv::getAvg).reversed()).collect(Collectors.toList());
         System.out.println(topBattingAvg);
@@ -45,11 +43,23 @@ public class CricketLeagueAnalyser {
     }
 
     public List<FactSheetMostRunsCsv> sortingToKnowTopStrikingRatesOfTheBatsman() throws CricketLeagueException {
-        if (mostRunCSVList == null ||  mostRunCSVList.size() == 0){
-            throw new CricketLeagueException("No Census Data",CricketLeagueException.ExceptionType.No_Census_Data);
+        if (mostRunCSVList == null || mostRunCSVList.size() == 0) {
+            throw new CricketLeagueException("No Census Data", CricketLeagueException.ExceptionType.No_Census_Data);
         }
         List topStrikingRates = mostRunCSVList.stream().sorted(Comparator.comparing(FactSheetMostRunsCsv::getSr).reversed()).collect(Collectors.toList());
         System.out.println(topStrikingRates);
         return topStrikingRates;
+    }
+
+    public List<FactSheetMostRunsCsv> sortingAccordingNumberOfFourAndNumberOfSix() throws CricketLeagueException {
+        if (mostRunCSVList == null || mostRunCSVList.size() == 0) {
+            throw new CricketLeagueException("No Census Data", CricketLeagueException.ExceptionType.No_Census_Data);
+        }
+
+        Comparator<FactSheetMostRunsCsv> sortNumberOfFourAndSix = (obj1, obj2) -> ((obj1.four * 4 + obj1.six * 6) < (obj2.four * 4 + obj2.six * 6) ? 1 : -1);
+        Collections.sort(mostRunCSVList, sortNumberOfFourAndSix);
+        System.out.println(mostRunCSVList);
+        return mostRunCSVList;
+
     }
 }

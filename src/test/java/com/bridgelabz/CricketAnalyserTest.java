@@ -55,5 +55,19 @@ public class CricketAnalyserTest {
             Assert.assertEquals(CricketLeagueException.ExceptionType.CENSUS_FILE_PROBLEM, e.type);
         }
     }
+
+    @Test
+    public void givenFileIPL2019FactsheetMostRuns_WhenSortAccordingFourAndSix_ShouldReturnSortedOutPut() {
+        try {
+            CricketLeagueAnalyser cricketLeagueAnalyser = new CricketLeagueAnalyser();
+            cricketLeagueAnalyser.loadFactsheetMostRunsFile(FACTS_SHEET_MOST_RUNS);
+            List<FactSheetMostRunsCsv> cricketLeagueData = cricketLeagueAnalyser.sortingAccordingNumberOfFourAndNumberOfSix();
+           Assert.assertEquals("Andre Russell", cricketLeagueData.get(0).player);
+           Assert.assertEquals("Shakib Al Hasan", cricketLeagueData.get(100).player);
+
+        } catch (CricketLeagueException e) {
+            Assert.assertEquals(CricketLeagueException.ExceptionType.CENSUS_FILE_PROBLEM, e.type);
+        }
+    }
 }
 

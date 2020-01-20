@@ -14,27 +14,28 @@ public class CricketAnalyserTest {
     @Test
     public void givenFileIPL2019FactsheetMostRuns_WhenCorrect_ShouldReturnData() throws CricketLeagueException {
         CricketLeagueAnalyser cricketLeagueAnalyser = new CricketLeagueAnalyser();
-        int cricketLeagueData = cricketLeagueAnalyser.loadFactsheetMostRunsFile(FACTS_SHEET_MOST_RUNS);
+        List<BatsmanDetails> cricketLeagueData = cricketLeagueAnalyser.loadFactsheetMostRunsFile(FACTS_SHEET_MOST_RUNS);
         System.out.println(cricketLeagueData);
-        Assert.assertEquals(101, cricketLeagueData);
+        Assert.assertEquals(101, cricketLeagueData.size());
     }
 
     @Test
     public void givenFileIPL2019FactsheetMostRuns_WhenCorrect_ReturnException() throws CricketLeagueException {
         try {
             CricketLeagueAnalyser cricketLeagueAnalyser = new CricketLeagueAnalyser();
-            int cricketLeagueData = cricketLeagueAnalyser.loadFactsheetMostRunsFile(WORNG_FACTS_SHEET_MOST_RUNS);
+            List<BatsmanDetails> cricketLeagueData = cricketLeagueAnalyser.loadFactsheetMostRunsFile(WORNG_FACTS_SHEET_MOST_RUNS);
         } catch (CricketLeagueException e) {
             Assert.assertEquals(CricketLeagueException.ExceptionType.FILE_PROBLEM, e.type);
         }
     }
+
 
     @Test
     public void givenFileIPL2019FactsheetMostRuns_WhenSort_ShouldReturnCricketersAvg() {
         try {
             CricketLeagueAnalyser cricketLeagueAnalyser = new CricketLeagueAnalyser();
             cricketLeagueAnalyser.loadFactsheetMostRunsFile(FACTS_SHEET_MOST_RUNS);
-            List<BatsmanDetails> cricketLeagueData = cricketLeagueAnalyser.sortingToGetTopBattingAvgOfCricketers();
+            List<BatsmanDetails> cricketLeagueData = cricketLeagueAnalyser.letsSorting(Sorting.fields.AVG_BATTING_RATE);
             Assert.assertEquals(83.2, cricketLeagueData.get(0).avg, 0);
         } catch (CricketLeagueException e) {
             Assert.assertEquals(CricketLeagueException.ExceptionType.FILE_PROBLEM, e.type);
@@ -46,7 +47,7 @@ public class CricketAnalyserTest {
         try {
             CricketLeagueAnalyser cricketLeagueAnalyser = new CricketLeagueAnalyser();
             cricketLeagueAnalyser.loadFactsheetMostRunsFile(FACTS_SHEET_MOST_RUNS);
-            List<BatsmanDetails> cricketLeagueData = cricketLeagueAnalyser.sortingToKnowTopStrikingRatesOfTheBatsman();
+            List<BatsmanDetails> cricketLeagueData = cricketLeagueAnalyser.letsSorting(Sorting.fields.STRIKING_RATE);
             Assert.assertEquals(333.33, cricketLeagueData.get(0).sr, 0);
             Assert.assertEquals(63.15, cricketLeagueData.get(100).sr, 0);
 
@@ -60,7 +61,7 @@ public class CricketAnalyserTest {
         try {
             CricketLeagueAnalyser cricketLeagueAnalyser = new CricketLeagueAnalyser();
             cricketLeagueAnalyser.loadFactsheetMostRunsFile(FACTS_SHEET_MOST_RUNS);
-            List<BatsmanDetails> cricketLeagueData = cricketLeagueAnalyser.sortingAccordingNumberOfFourAndNumberOfSix();
+            List<BatsmanDetails> cricketLeagueData = cricketLeagueAnalyser.letsSorting(Sorting.fields.FOUR_SIX);
             Assert.assertEquals("Andre Russell", cricketLeagueData.get(0).player);
             Assert.assertEquals("Shakib Al Hasan", cricketLeagueData.get(100).player);
 

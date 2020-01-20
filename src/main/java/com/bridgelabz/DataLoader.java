@@ -16,7 +16,7 @@ public class DataLoader {
 
     List<BatsmanDetails> batsmanDetailsArrayList = new ArrayList<>();
 
-    public List loadData(String csvFilePath,Class<BatsmanDetails> sourceClass) throws CricketLeagueException {
+    public List loadData(String csvFilePath, Class<BatsmanDetails> sourceClass) throws CricketLeagueException {
         try (Reader reader = Files.newBufferedReader(Paths.get(csvFilePath));) {
             ICSVBuilder csvBuilder = CsvBuilderFactory.createCSVBuilder();
             List csvList = csvBuilder.getCSVList(reader, sourceClass);

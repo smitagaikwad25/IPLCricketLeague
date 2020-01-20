@@ -7,34 +7,46 @@ public class CricketLeagueAnalyser {
 
     List<BatsmanDetails> batsmanDetailsArrayList = new ArrayList<>();
 
-    public int loadFactsheetMostRunsFile(String csvFilePath) throws CricketLeagueException {
+    public List<BatsmanDetails> loadFactsheetMostRunsFile(String csvFilePath) throws CricketLeagueException {
         batsmanDetailsArrayList = new DataLoader().loadData(csvFilePath, BatsmanDetails.class);
-        return batsmanDetailsArrayList.size();
-    }
-
-    public List<BatsmanDetails> sortingToGetTopBattingAvgOfCricketers() throws CricketLeagueException {
-        if (batsmanDetailsArrayList == null || batsmanDetailsArrayList.size() == 0) {
-            throw new CricketLeagueException("No Data Available", CricketLeagueException.ExceptionType.NO_DATA_AVAILABLE);
-        }
-        List topBattingAvg = batsmanDetailsArrayList.stream().sorted(Comparator.comparing(BatsmanDetails::getAvg).reversed()).collect(Collectors.toList());
-        return topBattingAvg;
-    }
-
-    public List<BatsmanDetails> sortingToKnowTopStrikingRatesOfTheBatsman() throws CricketLeagueException {
-        if (batsmanDetailsArrayList == null || batsmanDetailsArrayList.size() == 0) {
-            throw new CricketLeagueException("No Data Available", CricketLeagueException.ExceptionType.NO_DATA_AVAILABLE);
-        }
-        List topStrikingRates = batsmanDetailsArrayList.stream().sorted(Comparator.comparing(BatsmanDetails::getSr).reversed()).collect(Collectors.toList());
-        return topStrikingRates;
-    }
-
-    public List<BatsmanDetails> sortingAccordingNumberOfFourAndNumberOfSix() throws CricketLeagueException {
-        if (batsmanDetailsArrayList == null || batsmanDetailsArrayList.size() == 0) {
-            throw new CricketLeagueException("No Data Available", CricketLeagueException.ExceptionType.NO_DATA_AVAILABLE);
-        }
-
-        Comparator<BatsmanDetails> sortNumberOfFourAndSix = (obj1, obj2) -> ((obj1.four * 4 + obj1.six * 6) < (obj2.four * 4 + obj2.six * 6) ? 1 : -1);
-        Collections.sort(batsmanDetailsArrayList, sortNumberOfFourAndSix);
         return batsmanDetailsArrayList;
     }
+
+    public List<BatsmanDetails> letsSorting(Sorting.fields sortingFields) {
+
+        Comparator<BatsmanDetails> comparator = new Sorting().getFiled(sortingFields);
+        ArrayList sortedData = (ArrayList) batsmanDetailsArrayList.stream()
+                .sorted(comparator)
+                .collect(Collectors.toList());
+        Collections.reverse(sortedData);
+        System.out.println(sortedData);
+        return sortedData;
+    }
+
+//    public List<BatsmanDetails> sortingToGetTopBattingAvgOfCricketers() throws CricketLeagueException {
+//        if (batsmanDetailsArrayList == null || batsmanDetailsArrayList.size() == 0) {
+//            throw new CricketLeagueException("No Data Available", CricketLeagueException.ExceptionType.NO_DATA_AVAILABLE);
+//        }
+//        List topBattingAvg = batsmanDetailsArrayList.stream().sorted(Comparator.comparing(BatsmanDetails::getAvg).reversed()).collect(Collectors.toList());
+//        return topBattingAvg;
+//    }
+
+//    public List<BatsmanDetails> sortingToKnowTopStrikingRatesOfTheBatsman() throws CricketLeagueException {
+//        if (batsmanDetailsArrayList == null || batsmanDetailsArrayList.size() == 0) {
+//            throw new CricketLeagueException("No Data Available", CricketLeagueException.ExceptionType.NO_DATA_AVAILABLE);
+//        }
+//        List topStrikingRates = batsmanDetailsArrayList.stream().sorted(Comparator.comparing(BatsmanDetails::getSr).reversed()).collect(Collectors.toList());
+//        return topStrikingRates;
+//    }
+
+//    public List<BatsmanDetails> sortingAccordingNumberOfFourAndNumberOfSix() throws CricketLeagueException {
+//        if (batsmanDetailsArrayList == null || batsmanDetailsArrayList.size() == 0) {
+//            throw new CricketLeagueException("No Data Available", CricketLeagueException.ExceptionType.NO_DATA_AVAILABLE);
+//        }
+//
+//        Comparator<BatsmanDetails> sortNumberOfFourAndSix = (obj1, obj2) -> ((obj1.four * 4 + obj1.six * 6) < (obj2.four * 4 + obj2.six * 6) ? 1 : -1);
+//        Collections.sort(batsmanDetailsArrayList, sortNumberOfFourAndSix);
+//        return batsmanDetailsArrayList;
+//    }
+
 }

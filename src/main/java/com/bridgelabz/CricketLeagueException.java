@@ -1,6 +1,6 @@
 package com.bridgelabz;
 
-public class CricketLeagueException extends Exception  {
+public class CricketLeagueException extends Exception {
 
     enum ExceptionType {
         NO_DATA_AVAILABLE, FILE_PROBLEM

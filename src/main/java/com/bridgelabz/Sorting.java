@@ -20,6 +20,9 @@ public class Sorting {
         Comparator<BatsmanDetails> sortNumberOfFourAndSix = (obj1, obj2) -> ((obj1.four * 4 + obj1.six * 6) < (obj2.four * 4 + obj2.six * 6) ? -1 : 1);
         compareFields.put(fields.FOUR_SIX, sortNumberOfFourAndSix);
 
+        Comparator<BatsmanDetails> FourAndSixWthStrik = sortNumberOfFourAndSix.thenComparing((data1, data2) -> (int) (data1.sr - data2.sr));
+        compareFields.put(field.FOUR_SIX_STRIKE_RATE, FourAndSixWthStrik);
+
         Comparator comparator = compareFields.get(field);
         return comparator;
     }

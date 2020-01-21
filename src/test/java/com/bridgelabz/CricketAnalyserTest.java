@@ -12,7 +12,7 @@ public class CricketAnalyserTest {
     private static final String FACTS_SHEET_MOST_WKTS = "./src/test/resources/IPL2019FactsheetMostWkts.csv";
 
     @Test
-    public void givenFileIPL2019FactsheetMostRuns_WhenCorrect_ShouldReturnData() throws CricketLeagueException {
+    public void givenFile_WhenCorrect_ShouldReturnData() throws CricketLeagueException {
         CricketLeagueAnalyser cricketLeagueAnalyser = new CricketLeagueAnalyser();
         List<BatsmanDetails> cricketLeagueData = cricketLeagueAnalyser.loadFactsheetMostRunsFile(FACTS_SHEET_MOST_RUNS);
         System.out.println(cricketLeagueData);
@@ -20,7 +20,7 @@ public class CricketAnalyserTest {
     }
 
     @Test
-    public void givenFileIPL2019FactsheetMostRuns_WhenCorrect_ReturnException() throws CricketLeagueException {
+    public void givenFile_WhenCorrect_ReturnException() throws CricketLeagueException {
         try {
             CricketLeagueAnalyser cricketLeagueAnalyser = new CricketLeagueAnalyser();
             List<BatsmanDetails> cricketLeagueData = cricketLeagueAnalyser.loadFactsheetMostRunsFile(WORNG_FACTS_SHEET_MOST_RUNS);
@@ -31,11 +31,11 @@ public class CricketAnalyserTest {
 
 
     @Test
-    public void givenFileIPL2019FactsheetMostRuns_WhenSort_ShouldReturnCricketersAvg() {
+    public void givenFile_WhenSort_ShouldReturnCricketersAvg() {
         try {
             CricketLeagueAnalyser cricketLeagueAnalyser = new CricketLeagueAnalyser();
             cricketLeagueAnalyser.loadFactsheetMostRunsFile(FACTS_SHEET_MOST_RUNS);
-            List<BatsmanDetails> cricketLeagueData = cricketLeagueAnalyser.letsSorting(Sorting.fields.AVG_BATTING_RATE);
+            List<BatsmanDetails> cricketLeagueData = cricketLeagueAnalyser.letsSorting(Sorting.fields.AVG_BATING_RATE);
             Assert.assertEquals(83.2, cricketLeagueData.get(0).avg, 0);
         } catch (CricketLeagueException e) {
             Assert.assertEquals(CricketLeagueException.ExceptionType.FILE_PROBLEM, e.type);
@@ -43,7 +43,7 @@ public class CricketAnalyserTest {
     }
 
     @Test
-    public void givenFileIPL2019FactsheetMostRuns_WhenSort_ShouldReturnCricketers() {
+    public void givenFile_WhenSort_ShouldReturnCricketers() {
         try {
             CricketLeagueAnalyser cricketLeagueAnalyser = new CricketLeagueAnalyser();
             cricketLeagueAnalyser.loadFactsheetMostRunsFile(FACTS_SHEET_MOST_RUNS);
@@ -57,7 +57,7 @@ public class CricketAnalyserTest {
     }
 
     @Test
-    public void givenFileIPL2019FactsheetMostRuns_WhenSortAccordingFourAndSix_ShouldReturnSortedOutPut() {
+    public void givenFile_WhenSortAccordingFourAndSix_ShouldReturnSortedOutPut() {
         try {
             CricketLeagueAnalyser cricketLeagueAnalyser = new CricketLeagueAnalyser();
             cricketLeagueAnalyser.loadFactsheetMostRunsFile(FACTS_SHEET_MOST_RUNS);
@@ -69,5 +69,35 @@ public class CricketAnalyserTest {
             Assert.assertEquals(CricketLeagueException.ExceptionType.FILE_PROBLEM, e.type);
         }
     }
+
+    @Test
+    public void givenFile_WhenSortToKnowStrikingRatesWith6sAnd4s_ShouldReturnSortedOutPut() {
+        try {
+            CricketLeagueAnalyser cricketLeagueAnalyser = new CricketLeagueAnalyser();
+            cricketLeagueAnalyser.loadFactsheetMostRunsFile(FACTS_SHEET_MOST_RUNS);
+            List<BatsmanDetails> cricketLeagueData = cricketLeagueAnalyser.letsSorting(Sorting.fields.FOUR_SIX_STRIKE_RATE);
+            Assert.assertEquals("Andre Russell", cricketLeagueData.get(0).player);
+            Assert.assertEquals("Shakib Al Hasan", cricketLeagueData.get(100).player);
+
+        } catch (CricketLeagueException e) {
+            Assert.assertEquals(CricketLeagueException.ExceptionType.FILE_PROBLEM, e.type);
+        }
+    }
+
+    @Test
+    public void givenFile_WhenSortToKnowAveragesWithBestStrikingRate_ShouldReturnSortedOutPut() {
+        try {
+            CricketLeagueAnalyser cricketLeagueAnalyser = new CricketLeagueAnalyser();
+            cricketLeagueAnalyser.loadFactsheetMostRunsFile(FACTS_SHEET_MOST_RUNS);
+            List<BatsmanDetails> cricketLeagueData = cricketLeagueAnalyser.letsSorting(Sorting.fields.Avg_STRIKE_RATE);
+            Assert.assertEquals("MS Dhoni", cricketLeagueData.get(0).player);
+            Assert.assertEquals("Tim Southee", cricketLeagueData.get(100).player);
+
+        } catch (CricketLeagueException e) {
+            Assert.assertEquals(CricketLeagueException.ExceptionType.FILE_PROBLEM, e.type);
+        }
+    }
+
+
 }
 

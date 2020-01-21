@@ -89,8 +89,22 @@ public class CricketAnalyserTest {
         try {
             CricketLeagueAnalyser cricketLeagueAnalyser = new CricketLeagueAnalyser();
             cricketLeagueAnalyser.loadFactsheetMostRunsFile(FACTS_SHEET_MOST_RUNS);
-            List<BatsmanDetails> cricketLeagueData = cricketLeagueAnalyser.letsSorting(Sorting.fields.Avg_STRIKE_RATE);
+            List<BatsmanDetails> cricketLeagueData = cricketLeagueAnalyser.letsSorting(Sorting.fields.AVG_STRIKE_RATE);
             Assert.assertEquals("MS Dhoni", cricketLeagueData.get(0).player);
+            Assert.assertEquals("Tim Southee", cricketLeagueData.get(100).player);
+
+        } catch (CricketLeagueException e) {
+            Assert.assertEquals(CricketLeagueException.ExceptionType.FILE_PROBLEM, e.type);
+        }
+    }
+
+    @Test
+    public void givenFile_WhenSortToKnowRunsWithAverages_ShouldReturnSortedOutPut() {
+        try {
+            CricketLeagueAnalyser cricketLeagueAnalyser = new CricketLeagueAnalyser();
+            cricketLeagueAnalyser.loadFactsheetMostRunsFile(FACTS_SHEET_MOST_RUNS);
+            List<BatsmanDetails> cricketLeagueData = cricketLeagueAnalyser.letsSorting(Sorting.fields.RUNNS_AVERAGES);
+            Assert.assertEquals("David Warner ", cricketLeagueData.get(0).player);
             Assert.assertEquals("Tim Southee", cricketLeagueData.get(100).player);
 
         } catch (CricketLeagueException e) {

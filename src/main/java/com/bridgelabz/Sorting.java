@@ -33,7 +33,6 @@ public class Sorting {
         Comparator<BatsmanDetails> runnsWithAverages = cricketersRun.thenComparing(avgBatingRate);
         compareFields.put(fields.RUNNS_AVERAGES,runnsWithAverages);
 
-
         Comparator comparator = compareFields.get(field);
         return comparator;
     }

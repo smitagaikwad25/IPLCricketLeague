@@ -6,10 +6,17 @@ import java.util.stream.Collectors;
 public class CricketLeagueAnalyser {
 
     List<BatsmanDetails> batsmanDetailsArrayList = new ArrayList<>();
+    List<BowlersDetails> bowlersDetailsArrayList = new ArrayList<>();
 
-    public List<BatsmanDetails> loadFactsheetMostRunsFile(String csvFilePath) throws CricketLeagueException {
-        batsmanDetailsArrayList = new DataLoader().loadData(csvFilePath, BatsmanDetails.class);
+
+    public List<BatsmanDetails> loadBatsmanDetailsFile(String csvFilePath) throws CricketLeagueException {
+        batsmanDetailsArrayList = new DataLoader().loadBatsmansData(csvFilePath, BatsmanDetails.class);
         return batsmanDetailsArrayList;
+    }
+
+    public List<BowlersDetails> loadBowlersDetails(String csvFilePath) throws CricketLeagueException {
+        bowlersDetailsArrayList =  new DataLoader().loadBowlersData(csvFilePath, BowlersDetails.class);
+        return bowlersDetailsArrayList;
     }
 
     public List<BatsmanDetails> letsSorting(Sorting.fields sortingFields) {
@@ -22,4 +29,6 @@ public class CricketLeagueAnalyser {
         System.out.println(sortedData);
         return sortedData;
     }
+
+
 }

@@ -132,6 +132,21 @@ public class CricketAnalyserTest {
         }
     }
 
+    @Test
+    public void givenFileBowlerDetailsFile_WhenSortToKnowStrikingRates_ShouldReturnCricketersAvg() {
+        try {
+            CricketLeagueAnalyser cricketLeagueAnalyser = new CricketLeagueAnalyser();
+            cricketLeagueAnalyser.loadBowlersDetails(FACTS_SHEET_MOST_WKTS);
+            List<CricketLeagueDAO> cricketLeagueData = cricketLeagueAnalyser.letsSorting(Sorting.fields.STRIKING_RATE);
+            System.out.println(cricketLeagueData);
+            Assert.assertEquals(120.0, cricketLeagueData.get(0).sr, 0);
+            Assert.assertEquals(0.0, cricketLeagueData.get(98).sr, 0);
+
+        } catch (CricketLeagueException e) {
+            Assert.assertEquals(CricketLeagueException.ExceptionType.FILE_PROBLEM, e.type);
+        }
+    }
+
 
 }
 

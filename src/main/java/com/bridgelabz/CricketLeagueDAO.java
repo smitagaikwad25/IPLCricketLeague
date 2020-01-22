@@ -23,7 +23,6 @@ public class CricketLeagueDAO {
     public int fourWkts;
     public int fiveWkts;
 
-
     public CricketLeagueDAO(BatsmanDetails batsmanDetails) {
         pos = batsmanDetails.pos;
         player = batsmanDetails.player;

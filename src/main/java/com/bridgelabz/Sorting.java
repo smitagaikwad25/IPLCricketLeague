@@ -6,7 +6,7 @@ import java.util.HashMap;
 public class Sorting {
 
     public enum fields {
-        AVG_BATING_RATE, STRIKING_RATE, FOUR_SIX, FOUR_SIX_STRIKE_RATE, AVG_STRIKE_RATE, RUNNS_AVERAGES;
+        AVG_BATING_RATE, STRIKING_RATE, FOUR_SIX, FOUR_SIX_STRIKE_RATE, AVG_STRIKE_RATE, RUNNS_AVERAGES, Ecom;
     }
 
     HashMap<fields, Comparator<CricketLeagueDAO>> compareFields = new HashMap<>();
@@ -28,10 +28,13 @@ public class Sorting {
         Comparator<CricketLeagueDAO> AverageWithStriking =avgBatingRate.thenComparing(striking);
         compareFields.put(fields.AVG_STRIKE_RATE,AverageWithStriking);
 
-        Comparator<CricketLeagueDAO> cricketersRun = (data1, data2) -> (int) (data1.runs -data2.runs);
+        Comparator<CricketLeagueDAO> cricketersRun = (data1, data2) -> (int) (data1.runs - data2.runs);
 
         Comparator<CricketLeagueDAO> runnsWithAverages = cricketersRun.thenComparing(avgBatingRate);
         compareFields.put(fields.RUNNS_AVERAGES,runnsWithAverages);
+
+        Comparator<CricketLeagueDAO> bestEcom = (data1, data2) -> (int) ((data1.econ) < (data2.econ)? -1:1);
+        compareFields.put(fields.Ecom,bestEcom);
 
         Comparator comparator = compareFields.get(field);
         return comparator;

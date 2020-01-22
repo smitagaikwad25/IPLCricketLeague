@@ -114,8 +114,22 @@ public class CricketAnalyserTest {
     @Test
     public void givenFile_WhenLoadShouldReturnData() throws CricketLeagueException {
         CricketLeagueAnalyser cricketLeagueAnalyser = new CricketLeagueAnalyser();
-        List<CricketLeagueDAO> cricketLeagueData = cricketLeagueAnalyser.loadBowlersDetails(FACTS_SHEET_MOST_WKTS );
+        List<CricketLeagueDAO> cricketLeagueData = cricketLeagueAnalyser.loadBowlersDetails(FACTS_SHEET_MOST_WKTS);
         Assert.assertEquals(99, cricketLeagueData.size());
+    }
+
+
+    @Test
+    public void givenFileBowlerDetailsFile_WhenSort_ShouldReturnCricketersAvg() {
+        try {
+            CricketLeagueAnalyser cricketLeagueAnalyser = new CricketLeagueAnalyser();
+            cricketLeagueAnalyser.loadBowlersDetails(FACTS_SHEET_MOST_WKTS);
+            List<CricketLeagueDAO> cricketLeagueData = cricketLeagueAnalyser.letsSorting(Sorting.fields.AVG_BATING_RATE);
+            Assert.assertEquals(166.0, cricketLeagueData.get(0).avg, 0);
+            Assert.assertEquals(0.0, cricketLeagueData.get(98).avg, 0);
+        } catch (CricketLeagueException e) {
+            Assert.assertEquals(CricketLeagueException.ExceptionType.FILE_PROBLEM, e.type);
+        }
     }
 
 

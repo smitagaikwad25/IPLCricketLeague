@@ -36,4 +36,5 @@ public class Sorting {
         Comparator comparator = compareFields.get(field);
         return comparator;
     }
+
 }

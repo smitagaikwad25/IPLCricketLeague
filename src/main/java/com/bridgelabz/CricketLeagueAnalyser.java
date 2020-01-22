@@ -5,30 +5,28 @@ import java.util.stream.Collectors;
 
 public class CricketLeagueAnalyser {
 
-    List<BatsmanDetails> batsmanDetailsArrayList = new ArrayList<>();
-    List<BowlersDetails> bowlersDetailsArrayList = new ArrayList<>();
+    List<CricketLeagueDAO> cricketLeagueDetails = null;
 
-
-    public List<BatsmanDetails> loadBatsmanDetailsFile(String csvFilePath) throws CricketLeagueException {
-        batsmanDetailsArrayList = new DataLoader().loadBatsmansData(csvFilePath, BatsmanDetails.class);
-        return batsmanDetailsArrayList;
+    public CricketLeagueAnalyser() {
+        this.cricketLeagueDetails = new ArrayList<CricketLeagueDAO>();
     }
 
-    public List<BowlersDetails> loadBowlersDetails(String csvFilePath) throws CricketLeagueException {
-        bowlersDetailsArrayList =  new DataLoader().loadBowlersData(csvFilePath, BowlersDetails.class);
-        return bowlersDetailsArrayList;
+    public List<CricketLeagueDAO> loadBatsmanDetailsFile(String csvFilePath) throws CricketLeagueException {
+        cricketLeagueDetails = new DataLoader().loadData(csvFilePath, BatsmanDetails.class);
+        return cricketLeagueDetails;
     }
 
-    public List<BatsmanDetails> letsSorting(Sorting.fields sortingFields) {
+    public List<CricketLeagueDAO> loadBowlersDetails(String csvFilePath) throws CricketLeagueException {
+        cricketLeagueDetails = new DataLoader().loadData(csvFilePath, BowlersDetails.class);
+        return cricketLeagueDetails;
+    }
 
-        Comparator<BatsmanDetails> comparator = new Sorting().getFiled(sortingFields);
-        ArrayList sortedData = (ArrayList) batsmanDetailsArrayList.stream()
+    public List<CricketLeagueDAO> letsSorting(Sorting.fields sortingFields) {
+        Comparator<CricketLeagueDAO> comparator = new Sorting().getFiled(sortingFields);
+        cricketLeagueDetails = cricketLeagueDetails.stream()
                 .sorted(comparator)
                 .collect(Collectors.toList());
-        Collections.reverse(sortedData);
-        System.out.println(sortedData);
-        return sortedData;
+        Collections.reverse(cricketLeagueDetails);
+        return cricketLeagueDetails;
     }
-
-
 }

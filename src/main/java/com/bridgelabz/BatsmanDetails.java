@@ -11,7 +11,7 @@ public class BatsmanDetails {
     public String player;
 
     @CsvBindByName(column = "Mat", required = true)
-    public int mat;
+    public int matches;
 
     @CsvBindByName(column = "Inns", required = true)
     public int inns;
@@ -55,7 +55,7 @@ public class BatsmanDetails {
     }
 
     public int getMat() {
-        return mat;
+        return matches;
     }
 
     public int getInns() {
@@ -107,7 +107,7 @@ public class BatsmanDetails {
         return "BatsmanDetails{" +
                 "pos=" + pos +
                 ", player='" + player + '\'' +
-                ", mat=" + mat +
+                ", mat=" + matches +
                 ", inns=" + inns +
                 ", no=" + no +
                 ", runs=" + runs +

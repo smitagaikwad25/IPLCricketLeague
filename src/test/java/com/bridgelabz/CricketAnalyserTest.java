@@ -153,8 +153,20 @@ public class CricketAnalyserTest {
             CricketLeagueAnalyser cricketLeagueAnalyser = new CricketLeagueAnalyser();
             cricketLeagueAnalyser.loadBowlersDetails(FACTS_SHEET_MOST_WKTS);
             List<CricketLeagueDAO> cricketLeagueData = cricketLeagueAnalyser.letsSorting(Sorting.fields.Ecom);
-            System.out.println(cricketLeagueData);
             Assert.assertEquals(13.5, cricketLeagueData.get(0).econ, 0);
+        } catch (CricketLeagueException e) {
+            Assert.assertEquals(CricketLeagueException.ExceptionType.FILE_PROBLEM, e.type);
+        }
+    }
+
+    @Test
+    public void givenFileBowlerDetailsFile_WhenSortToKnowStrikingWith4WAnd5W_ShouldReturnCricketersAvg() {
+        try {
+            CricketLeagueAnalyser cricketLeagueAnalyser = new CricketLeagueAnalyser();
+            cricketLeagueAnalyser.loadBowlersDetails(FACTS_SHEET_MOST_WKTS);
+            List<CricketLeagueDAO> cricketLeagueData = cricketLeagueAnalyser.letsSorting(Sorting.fields.STRIKING_RATE_4W_5w);
+            Assert.assertEquals("Krishnappa Gowtham", cricketLeagueData.get(0).player);
+            Assert.assertEquals("Shivam Dube", cricketLeagueData.get(98).player);
         } catch (CricketLeagueException e) {
             Assert.assertEquals(CricketLeagueException.ExceptionType.FILE_PROBLEM, e.type);
         }

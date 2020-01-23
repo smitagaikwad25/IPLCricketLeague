@@ -16,10 +16,10 @@ public abstract class CricketAdapter {
 
     Map<String,CricketLeagueDAO> cricketLeagueDetails = new HashMap<>();
 
-    public abstract Map<String, CricketLeagueDAO> loadCricketerData(String... csvFilePath) throws CricketLeagueException;
+    public abstract <E> Map<String, CricketLeagueDAO> loadCricketerData(String... csvFilePath) throws CricketLeagueException;
 
     public <E> Map<String, CricketLeagueDAO> loadData(Class sourceClass, String csvFilePath) throws CricketLeagueException {
-        try (Reader reader = Files.newBufferedReader(Paths.get(csvFilePath));) {
+        try (Reader reader = Files.newBufferedReader(Paths.get(String.valueOf(csvFilePath)))) {
             ICSVBuilder csvBuilder = CsvBuilderFactory.createCSVBuilder();
             Iterator<E> csvIterator = csvBuilder.getCSVIterator(reader, sourceClass);
             Iterable<E> csvIterable = () -> csvIterator;

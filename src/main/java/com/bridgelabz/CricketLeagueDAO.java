@@ -81,7 +81,12 @@ public class CricketLeagueDAO {
                 ", fiveWkts=" + fiveWkts +
                 '}';
     }
-}
 
+    public Object getCricketDTO(CricketLeagueAnalyser.CricketerType cricketerType) {
+        if (cricketerType.equals(CricketLeagueAnalyser.CricketerType.BATING))
+            return new BatsmanDetails(pos,player,matches,inns,no,runs,hs,avg,bf,sr,century,halfCentury,four,six);
+        return new BowlersDetails(pos,player,matches,inns,overs,runs,wkts,bestBowlerInn,avg,econ,sr,fourWkts,fiveWkts);
+    }
+}
 
 

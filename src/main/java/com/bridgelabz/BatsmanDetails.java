@@ -102,6 +102,26 @@ public class BatsmanDetails {
         return six;
     }
 
+    public BatsmanDetails() {
+    }
+
+    public BatsmanDetails(int pos, String player, int matches, int inns, int no, int runs, int hs, double avg, double bf, double sr, int century, int halfCentury, int four, int six) {
+        this.pos = pos;
+        this.player = player;
+        this.matches = matches;
+        this.inns = inns;
+        this.no = no;
+        this.runs = runs;
+        this.hs = hs;
+        this.avg = avg;
+        this.bf = bf;
+        this.sr = sr;
+        this.century = century;
+        this.halfCentury = halfCentury;
+        this.four = four;
+        this.six = six;
+    }
+
     @Override
     public String toString() {
         return "BatsmanDetails{" +

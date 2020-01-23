@@ -98,6 +98,22 @@ public class BowlersDetails {
     public BowlersDetails() {
     }
 
+    public BowlersDetails(int pos, String player, int matches, int inns, double overs, int runs, int wkts, int bestBowlerInn, double avg, double econ, double sr, int fourWkts, int fiveWkts) {
+        this.pos = pos;
+        this.player = player;
+        this.matches = matches;
+        this.inns = inns;
+        this.overs = overs;
+        this.runs = runs;
+        this.wkts = wkts;
+        this.bestBowlerInn = bestBowlerInn;
+        this.avg = avg;
+        this.econ = econ;
+        this.sr = sr;
+        this.fourWkts = fourWkts;
+        this.fiveWkts = fiveWkts;
+    }
+
     @Override
     public String toString() {
         return "BowlersDetails{" +

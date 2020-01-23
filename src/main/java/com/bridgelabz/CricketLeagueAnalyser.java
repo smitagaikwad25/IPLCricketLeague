@@ -18,14 +18,15 @@ public class CricketLeagueAnalyser {
     }
 
     public <E> int loadCricketerData(String... csvFilePath) throws CricketLeagueException{
-       cricketLeagueDetails = new AdapterFactory().getCricketerData(cricketerType,csvFilePath);
+       cricketLeagueDetails = AdapterFactory.getCricketerData(cricketerType,csvFilePath[0]);
        return cricketLeagueDetails.size();
     }
 
-    public List<CricketLeagueDAO> letsSorting(Sorting.fields sortingFields) {
+    public List letsSorting(Sorting.fields sortingFields) {
         Comparator<CricketLeagueDAO> comparator = new Sorting().getFiled(sortingFields);
         List sortedData = cricketLeagueDetails.values().stream()
                 .sorted(comparator)
+                .map(CricketInfo -> CricketInfo.getCricketDTO(cricketerType))
                 .collect(Collectors.toList());
         Collections.reverse(sortedData);
         return sortedData;

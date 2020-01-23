@@ -14,15 +14,15 @@ public class CricketAnalyserTest {
     @Test
     public void givenFile_WhenCorrect_ShouldReturnData() throws CricketLeagueException {
         CricketLeagueAnalyser cricketLeagueAnalyser = new CricketLeagueAnalyser();
-        List<CricketLeagueDAO> cricketLeagueData = cricketLeagueAnalyser.loadBatsmanDetailsFile(FACTS_SHEET_MOST_RUNS);
-        Assert.assertEquals(101, cricketLeagueData.size());
+        int cricketLeagueData = cricketLeagueAnalyser.loadBatsmanDetailsFile(FACTS_SHEET_MOST_RUNS);
+        Assert.assertEquals(100, cricketLeagueData);
     }
 
     @Test
     public void givenFile_WhenCorrect_ReturnException() throws CricketLeagueException {
         try {
             CricketLeagueAnalyser cricketLeagueAnalyser = new CricketLeagueAnalyser();
-            List<CricketLeagueDAO> cricketLeagueData = cricketLeagueAnalyser.loadBatsmanDetailsFile(WORNG_FACTS_SHEET_MOST_RUNS);
+            int cricketLeagueData = cricketLeagueAnalyser.loadBatsmanDetailsFile(WORNG_FACTS_SHEET_MOST_RUNS);
         } catch (CricketLeagueException e) {
             Assert.assertEquals(CricketLeagueException.ExceptionType.FILE_PROBLEM, e.type);
         }
@@ -48,7 +48,7 @@ public class CricketAnalyserTest {
             cricketLeagueAnalyser.loadBatsmanDetailsFile(FACTS_SHEET_MOST_RUNS);
             List<CricketLeagueDAO> cricketLeagueData = cricketLeagueAnalyser.letsSorting(Sorting.fields.STRIKING_RATE);
             Assert.assertEquals(333.33, cricketLeagueData.get(0).sr, 0);
-            Assert.assertEquals(63.15, cricketLeagueData.get(100).sr, 0);
+            Assert.assertEquals(63.15, cricketLeagueData.get(99).sr, 0);
 
         } catch (CricketLeagueException e) {
             Assert.assertEquals(CricketLeagueException.ExceptionType.FILE_PROBLEM, e.type);
@@ -62,7 +62,7 @@ public class CricketAnalyserTest {
             cricketLeagueAnalyser.loadBatsmanDetailsFile(FACTS_SHEET_MOST_RUNS);
             List<CricketLeagueDAO> cricketLeagueData = cricketLeagueAnalyser.letsSorting(Sorting.fields.FOUR_SIX);
             Assert.assertEquals("Andre Russell", cricketLeagueData.get(0).player);
-            Assert.assertEquals("Shakib Al Hasan", cricketLeagueData.get(100).player);
+            Assert.assertEquals("Tim Southee", cricketLeagueData.get(99).player);
 
         } catch (CricketLeagueException e) {
             Assert.assertEquals(CricketLeagueException.ExceptionType.FILE_PROBLEM, e.type);
@@ -76,7 +76,7 @@ public class CricketAnalyserTest {
             cricketLeagueAnalyser.loadBatsmanDetailsFile(FACTS_SHEET_MOST_RUNS);
             List<CricketLeagueDAO> cricketLeagueData = cricketLeagueAnalyser.letsSorting(Sorting.fields.FOUR_SIX_STRIKE_RATE);
             Assert.assertEquals("Andre Russell", cricketLeagueData.get(0).player);
-            Assert.assertEquals("Shakib Al Hasan", cricketLeagueData.get(100).player);
+            Assert.assertEquals("Tim Southee", cricketLeagueData.get(99).player);
 
         } catch (CricketLeagueException e) {
             Assert.assertEquals(CricketLeagueException.ExceptionType.FILE_PROBLEM, e.type);
@@ -90,7 +90,7 @@ public class CricketAnalyserTest {
             cricketLeagueAnalyser.loadBatsmanDetailsFile(FACTS_SHEET_MOST_RUNS);
             List<CricketLeagueDAO> cricketLeagueData = cricketLeagueAnalyser.letsSorting(Sorting.fields.AVG_STRIKE_RATE);
             Assert.assertEquals("MS Dhoni", cricketLeagueData.get(0).player);
-            Assert.assertEquals("Tim Southee", cricketLeagueData.get(100).player);
+            Assert.assertEquals("Tim Southee", cricketLeagueData.get(99).player);
 
         } catch (CricketLeagueException e) {
             Assert.assertEquals(CricketLeagueException.ExceptionType.FILE_PROBLEM, e.type);
@@ -104,7 +104,7 @@ public class CricketAnalyserTest {
             cricketLeagueAnalyser.loadBatsmanDetailsFile(FACTS_SHEET_MOST_RUNS);
             List<CricketLeagueDAO> cricketLeagueData = cricketLeagueAnalyser.letsSorting(Sorting.fields.RUNNS_AVERAGES);
             Assert.assertEquals("David Warner ", cricketLeagueData.get(0).player);
-            Assert.assertEquals("Tim Southee", cricketLeagueData.get(100).player);
+            Assert.assertEquals("Tim Southee", cricketLeagueData.get(99).player);
 
         } catch (CricketLeagueException e) {
             Assert.assertEquals(CricketLeagueException.ExceptionType.FILE_PROBLEM, e.type);
@@ -114,10 +114,9 @@ public class CricketAnalyserTest {
     @Test
     public void givenFile_WhenLoadShouldReturnData() throws CricketLeagueException {
         CricketLeagueAnalyser cricketLeagueAnalyser = new CricketLeagueAnalyser();
-        List<CricketLeagueDAO> cricketLeagueData = cricketLeagueAnalyser.loadBowlersDetails(FACTS_SHEET_MOST_WKTS);
-        Assert.assertEquals(99, cricketLeagueData.size());
+        int cricketLeagueData = cricketLeagueAnalyser.loadBowlersDetails(FACTS_SHEET_MOST_WKTS);
+        Assert.assertEquals(99, cricketLeagueData);
     }
-
 
     @Test
     public void givenFileBowlerDetailsFile_WhenSort_ShouldReturnCricketersAvg() {
@@ -166,7 +165,7 @@ public class CricketAnalyserTest {
             cricketLeagueAnalyser.loadBowlersDetails(FACTS_SHEET_MOST_WKTS);
             List<CricketLeagueDAO> cricketLeagueData = cricketLeagueAnalyser.letsSorting(Sorting.fields.STRIKING_RATE_4W_5w);
             Assert.assertEquals("Krishnappa Gowtham", cricketLeagueData.get(0).player);
-            Assert.assertEquals("Shivam Dube", cricketLeagueData.get(98).player);
+            Assert.assertEquals("Suresh Raina", cricketLeagueData.get(98).player);
         } catch (CricketLeagueException e) {
             Assert.assertEquals(CricketLeagueException.ExceptionType.FILE_PROBLEM, e.type);
         }
@@ -179,7 +178,7 @@ public class CricketAnalyserTest {
             cricketLeagueAnalyser.loadBowlersDetails(FACTS_SHEET_MOST_WKTS);
             List<CricketLeagueDAO> cricketLeagueData = cricketLeagueAnalyser.letsSorting(Sorting.fields.AVG_STRIKE_RATE);
             Assert.assertEquals("Krishnappa Gowtham", cricketLeagueData.get(0).player);
-            Assert.assertEquals("Shivam Dube", cricketLeagueData.get(98).player);
+            Assert.assertEquals("Suresh Raina", cricketLeagueData.get(98).player);
         } catch (CricketLeagueException e) {
             Assert.assertEquals(CricketLeagueException.ExceptionType.FILE_PROBLEM, e.type);
         }
@@ -192,7 +191,7 @@ public class CricketAnalyserTest {
             cricketLeagueAnalyser.loadBowlersDetails(FACTS_SHEET_MOST_WKTS);
             List<CricketLeagueDAO> cricketLeagueData = cricketLeagueAnalyser.letsSorting(Sorting.fields.MAX_WICKETS_BOWLING);
             Assert.assertEquals("Imran Tahir", cricketLeagueData.get(0).player);
-            Assert.assertEquals("Shivam Dube", cricketLeagueData.get(98).player);
+            Assert.assertEquals("Suresh Raina", cricketLeagueData.get(98).player);
         } catch (CricketLeagueException e) {
             Assert.assertEquals(CricketLeagueException.ExceptionType.FILE_PROBLEM, e.type);
         }

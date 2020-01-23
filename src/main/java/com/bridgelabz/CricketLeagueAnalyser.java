@@ -5,21 +5,21 @@ import java.util.stream.Collectors;
 
 public class CricketLeagueAnalyser {
 
-    Map<String, CricketLeagueDAO> cricketLeagueDetails = null;
-
-    public CricketLeagueAnalyser() {
-
-        this.cricketLeagueDetails = new HashMap<>();
+    public enum CricketerType{
+        BATING,BOWLER
     }
 
-    public int loadBatsmanDetailsFile(String csvFilePath) throws CricketLeagueException {
-        cricketLeagueDetails = new DataLoader().loadData(csvFilePath, BatsmanDetails.class);
-        return cricketLeagueDetails.size();
+    private CricketerType cricketerType;
+
+    Map<String, CricketLeagueDAO> cricketLeagueDetails = new HashMap<>();;
+
+    public CricketLeagueAnalyser(CricketerType cricketerType) {
+        this.cricketerType = cricketerType;
     }
 
-    public int loadBowlersDetails(String csvFilePath) throws CricketLeagueException {
-        cricketLeagueDetails = new DataLoader().loadData(csvFilePath, BowlersDetails.class);
-        return cricketLeagueDetails.size();
+    public <E> int loadCricketerData(String... csvFilePath) throws CricketLeagueException{
+       cricketLeagueDetails = new AdapterFactory().getCricketerData(cricketerType,csvFilePath);
+       return cricketLeagueDetails.size();
     }
 
     public List<CricketLeagueDAO> letsSorting(Sorting.fields sortingFields) {

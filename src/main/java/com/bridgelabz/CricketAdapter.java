@@ -12,11 +12,13 @@ import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
-public class DataLoader {
+public abstract class CricketAdapter {
 
     Map<String,CricketLeagueDAO> cricketLeagueDetails = new HashMap<>();
 
-    public <E> Map<String, CricketLeagueDAO> loadData(String csvFilePath, Class<E> sourceClass) throws CricketLeagueException {
+    public abstract Map<String, CricketLeagueDAO> loadCricketerData(String... csvFilePath) throws CricketLeagueException;
+
+    public <E> Map<String, CricketLeagueDAO> loadData(Class sourceClass, String csvFilePath) throws CricketLeagueException {
         try (Reader reader = Files.newBufferedReader(Paths.get(csvFilePath));) {
             ICSVBuilder csvBuilder = CsvBuilderFactory.createCSVBuilder();
             Iterator<E> csvIterator = csvBuilder.getCSVIterator(reader, sourceClass);
@@ -42,4 +44,5 @@ public class DataLoader {
         }
 
     }
+
 }

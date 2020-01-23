@@ -185,7 +185,17 @@ public class CricketAnalyserTest {
         }
     }
 
-
-
+    @Test
+    public void givenFileBowlerDetailsFile_WhenSortToKnowWhoTookMaximunWicketsWithBestBowling_ShoudReturnSortedOutPut() {
+        try {
+            CricketLeagueAnalyser cricketLeagueAnalyser = new CricketLeagueAnalyser();
+            cricketLeagueAnalyser.loadBowlersDetails(FACTS_SHEET_MOST_WKTS);
+            List<CricketLeagueDAO> cricketLeagueData = cricketLeagueAnalyser.letsSorting(Sorting.fields.MAX_WICKETS_BOWLING);
+            Assert.assertEquals("Imran Tahir", cricketLeagueData.get(0).player);
+            Assert.assertEquals("Shivam Dube", cricketLeagueData.get(98).player);
+        } catch (CricketLeagueException e) {
+            Assert.assertEquals(CricketLeagueException.ExceptionType.FILE_PROBLEM, e.type);
+        }
+    }
 }
 

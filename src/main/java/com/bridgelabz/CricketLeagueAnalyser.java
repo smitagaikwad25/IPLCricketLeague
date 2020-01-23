@@ -27,6 +27,7 @@ public class CricketLeagueAnalyser {
                 .sorted(comparator)
                 .collect(Collectors.toList());
         Collections.reverse(cricketLeagueDetails);
+        System.out.println(cricketLeagueDetails);
         return cricketLeagueDetails;
     }
 }

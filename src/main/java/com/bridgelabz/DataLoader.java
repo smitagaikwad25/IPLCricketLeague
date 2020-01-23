@@ -13,9 +13,8 @@ import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
 public class DataLoader {
-//    List<CricketLeagueDAO> cricketLeagueDetails  = new ArrayList<>();
-    Map<String,CricketLeagueDAO> cricketLeagueDetails = new HashMap<>();
 
+    Map<String,CricketLeagueDAO> cricketLeagueDetails = new HashMap<>();
 
     public <E> Map<String, CricketLeagueDAO> loadData(String csvFilePath, Class<E> sourceClass) throws CricketLeagueException {
         try (Reader reader = Files.newBufferedReader(Paths.get(csvFilePath));) {
@@ -28,7 +27,6 @@ public class DataLoader {
                         .map(BatsmanDetails.class::cast)
                         .forEach(cricketcsv -> cricketLeagueDetails.put(cricketcsv.getPlayer(),new CricketLeagueDAO(cricketcsv)));
             } else if (sourceClass.getName().equals("com.bridgelabz.BowlersDetails")) {
-//                csvList.stream().filter(CricketData -> cricketLeagueDetails.add(new CricketLeagueDAO((BowlersDetails) CricketData))).collect(Collectors.toList());
                 StreamSupport.stream(csvIterable.spliterator(),false)
                         .map(BowlersDetails.class::cast)
                         .forEach(cricketcsv -> cricketLeagueDetails.put(cricketcsv.getPlayer(),new CricketLeagueDAO(cricketcsv)));

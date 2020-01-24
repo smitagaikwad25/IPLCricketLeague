@@ -26,7 +26,7 @@ public class BatsmanDetails {
     public int hs;
 
     @CsvBindByName(column = "Avg", required = true)
-    public double avg;
+    public double batsmanAvg;
 
     @CsvBindByName(column = "BF", required = true)
     public double bf;
@@ -75,7 +75,7 @@ public class BatsmanDetails {
     }
 
     public double getAvg() {
-        return avg;
+        return batsmanAvg;
     }
 
     public double getBf() {
@@ -105,7 +105,7 @@ public class BatsmanDetails {
     public BatsmanDetails() {
     }
 
-    public BatsmanDetails(int pos, String player, int matches, int inns, int no, int runs, int hs, double avg, double bf, double sr, int century, int halfCentury, int four, int six) {
+    public BatsmanDetails(int pos, String player, int matches, int inns, int no, int runs, int hs, double batsmanAvg, double bf, double sr, int century, int halfCentury, int four, int six) {
         this.pos = pos;
         this.player = player;
         this.matches = matches;
@@ -113,7 +113,7 @@ public class BatsmanDetails {
         this.no = no;
         this.runs = runs;
         this.hs = hs;
-        this.avg = avg;
+        this.batsmanAvg = batsmanAvg;
         this.bf = bf;
         this.sr = sr;
         this.century = century;
@@ -132,7 +132,7 @@ public class BatsmanDetails {
                 ", no=" + no +
                 ", runs=" + runs +
                 ", hs=" + hs +
-                ", avg=" + avg +
+                ", batsmanAvg=" + batsmanAvg +
                 ", bf=" + bf +
                 ", sr=" + sr +
                 ", century=" + century +

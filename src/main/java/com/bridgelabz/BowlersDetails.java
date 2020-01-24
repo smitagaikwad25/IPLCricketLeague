@@ -29,7 +29,7 @@ public class BowlersDetails {
     public int bestBowlerInn;
 
     @CsvBindByName(column = "Avg", required = true)
-    public double avg;
+    public double bowlerAvg;
 
     @CsvBindByName(column = "Econ", required = true)
     public double econ;
@@ -76,7 +76,7 @@ public class BowlersDetails {
     }
 
     public double getAvg() {
-        return avg;
+        return bowlerAvg;
     }
 
     public double getEcon() {
@@ -98,7 +98,7 @@ public class BowlersDetails {
     public BowlersDetails() {
     }
 
-    public BowlersDetails(int pos, String player, int matches, int inns, double overs, int runs, int wkts, int bestBowlerInn, double avg, double econ, double sr, int fourWkts, int fiveWkts) {
+    public BowlersDetails(int pos, String player, int matches, int inns, double overs, int runs, int wkts, int bestBowlerInn, double bowlerAvg, double econ, double sr, int fourWkts, int fiveWkts) {
         this.pos = pos;
         this.player = player;
         this.matches = matches;
@@ -107,7 +107,7 @@ public class BowlersDetails {
         this.runs = runs;
         this.wkts = wkts;
         this.bestBowlerInn = bestBowlerInn;
-        this.avg = avg;
+        this.bowlerAvg = bowlerAvg;
         this.econ = econ;
         this.sr = sr;
         this.fourWkts = fourWkts;
@@ -125,7 +125,7 @@ public class BowlersDetails {
                 ", runs=" + runs +
                 ", wkts=" + wkts +
                 ", bestBowlerInn=" + bestBowlerInn +
-                ", avg=" + avg +
+                ", bowlerAvg=" + bowlerAvg +
                 ", econ=" + econ +
                 ", sr=" + sr +
                 ", fourWkts=" + fourWkts +

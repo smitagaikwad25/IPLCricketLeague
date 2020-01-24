@@ -9,7 +9,7 @@ public class CricketLeagueDAO {
     public int no;
     public int runs;
     public int hs;
-    public double avg;
+    public double batsmanAvg;
     public double bf;
     public double sr;
     public int century;
@@ -22,6 +22,7 @@ public class CricketLeagueDAO {
     public double econ;
     public int fourWkts;
     public int fiveWkts;
+    public double bowlerAvg;
 
     public CricketLeagueDAO(BatsmanDetails batsmanDetails) {
         pos = batsmanDetails.pos;
@@ -31,7 +32,7 @@ public class CricketLeagueDAO {
         no = batsmanDetails.no;
         runs = batsmanDetails.runs;
         hs = batsmanDetails.hs;
-        avg = batsmanDetails.avg;
+        batsmanAvg = batsmanDetails.batsmanAvg;
         bf = batsmanDetails.bf;
         sr = batsmanDetails.sr;
         century = batsmanDetails.century;
@@ -46,7 +47,7 @@ public class CricketLeagueDAO {
         matches = bowlersDetails.matches;
         inns = bowlersDetails.inns;
         runs = bowlersDetails.runs;
-        avg = bowlersDetails.avg;
+        bowlerAvg = bowlersDetails.bowlerAvg;
         sr = bowlersDetails.sr;
         overs = bowlersDetails.overs;
         wkts = bowlersDetails.wkts;
@@ -66,7 +67,7 @@ public class CricketLeagueDAO {
                 ", no=" + no +
                 ", runs=" + runs +
                 ", hs=" + hs +
-                ", avg=" + avg +
+                ", batsmanAvg=" + batsmanAvg +
                 ", bf=" + bf +
                 ", sr=" + sr +
                 ", century=" + century +
@@ -79,13 +80,14 @@ public class CricketLeagueDAO {
                 ", econ=" + econ +
                 ", fourWkts=" + fourWkts +
                 ", fiveWkts=" + fiveWkts +
+                ", bowlerAvg=" + bowlerAvg +
                 '}';
     }
 
     public Object getCricketDTO(CricketLeagueAnalyser.CricketerType cricketerType) {
         if (cricketerType.equals(CricketLeagueAnalyser.CricketerType.BATING))
-            return new BatsmanDetails(pos,player,matches,inns,no,runs,hs,avg,bf,sr,century,halfCentury,four,six);
-        return new BowlersDetails(pos,player,matches,inns,overs,runs,wkts,bestBowlerInn,avg,econ,sr,fourWkts,fiveWkts);
+            return new BatsmanDetails(pos,player,matches,inns,no,runs,hs,batsmanAvg,bf,sr,century,halfCentury,four,six);
+        return new BowlersDetails(pos,player,matches,inns,overs,runs,wkts,bestBowlerInn,bowlerAvg ,econ,sr,fourWkts,fiveWkts);
     }
 }
 

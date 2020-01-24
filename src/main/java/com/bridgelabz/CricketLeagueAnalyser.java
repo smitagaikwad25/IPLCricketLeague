@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 public class CricketLeagueAnalyser {
 
     public enum CricketerType{
-        BATING,BOWLER
+        BATING,BOWLER,BATING_BOWLER
     }
 
     private CricketerType cricketerType;
@@ -18,7 +18,7 @@ public class CricketLeagueAnalyser {
     }
 
     public <E> int loadCricketerData(String... csvFilePath) throws CricketLeagueException{
-       cricketLeagueDetails = AdapterFactory.getCricketerData(cricketerType,csvFilePath[0]);
+       cricketLeagueDetails = AdapterFactory.getCricketerData(cricketerType,csvFilePath);
        return cricketLeagueDetails.size();
     }
 

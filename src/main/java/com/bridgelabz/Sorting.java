@@ -52,6 +52,13 @@ public class Sorting {
         Comparator<CricketLeagueDAO> bestBatsmanAndBowlerAvg = avgBatingRate.thenComparing(avgBowlingRate);
         compareFields.put(fields.BEST_BATING_BOWLING_AVG, bestBatsmanAndBowlerAvg);
 
+        Comparator<CricketLeagueDAO> allRounderPlayer = Comparator.comparing(CricketLeagueDAO -> {
+            if (CricketLeagueDAO.wkts > 7 && CricketLeagueDAO.runs > 150)
+                return CricketLeagueDAO.runs + (CricketLeagueDAO.wkts * 20);
+            return 0;
+        });
+        compareFields.put(fields.ALL_ROUNDER_PLAYER, allRounderPlayer);
+
         Comparator comparator = compareFields.get(field);
         return comparator;
 

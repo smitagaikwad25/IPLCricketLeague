@@ -12,6 +12,7 @@ public class MergingAdapter extends CricketAdapter {
                 .filter(cricketData-> cricketBatsman.get(cricketData.player)!=null)
                 .forEach(cricketData->{cricketBatsman.get(cricketData.player).
                         bowlerAvg=cricketData.bowlerAvg;
+                    cricketBatsman.get(cricketData.player).wkts=cricketData.wkts;
                 });
 
         return cricketBatsman;

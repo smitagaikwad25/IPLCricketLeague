@@ -211,4 +211,18 @@ public class CricketAnalyserTest {
         }
 
     }
+
+    @Test
+    public void givenFileBothFiles_WhenSort_ShoudReturnAllRounderCricketer() {
+        try {
+            CricketLeagueAnalyser cricketLeagueAnalyser = new CricketLeagueAnalyser(CricketLeagueAnalyser.CricketerType.BATING_BOWLER);
+            cricketLeagueAnalyser.loadCricketerData(FACTS_SHEET_MOST_RUNS, FACTS_SHEET_MOST_WKTS);
+            List<BowlersDetails> cricketLeagueData = cricketLeagueAnalyser.letsSorting(Sorting.fields.ALL_ROUNDER_PLAYER);
+            Assert.assertEquals("Andre Russell", cricketLeagueData.get(0).player);
+            Assert.assertEquals("Umesh Yadav", cricketLeagueData.get(98).player);
+        } catch (CricketLeagueException e) {
+            Assert.assertEquals(CricketLeagueException.ExceptionType.FILE_PROBLEM, e.type);
+        }
+
+    }
 }

@@ -3,7 +3,7 @@ package com.bridgelabz;
 import java.util.Map;
 
 public class AdapterFactory {
-    public static Map<String, CricketLeagueDAO> getCricketerData(CricketLeagueAnalyser.CricketerType cricketerType, String... csvFilePath) throws CricketLeagueException {
+    public Map<String, CricketLeagueDAO> getCricketerData(CricketLeagueAnalyser.CricketerType cricketerType, String... csvFilePath) throws CricketLeagueException {
         if (cricketerType.equals(CricketLeagueAnalyser.CricketerType.BATING)) {
             return new BatsmanDetailsAdapter().loadCricketerData(csvFilePath);
         } else if (cricketerType.equals(CricketLeagueAnalyser.CricketerType.BOWLER)) {

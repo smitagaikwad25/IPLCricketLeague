@@ -57,6 +57,10 @@ public class CricketLeagueDAO {
         fiveWkts = bowlersDetails.fiveWkts;
     }
 
+    public CricketLeagueDAO() {
+
+    }
+
     @Override
     public String toString() {
         return "CricketLeagueDAO{" +

@@ -205,7 +205,6 @@ public class CricketAnalyserTest {
             cricketLeagueAnalyser.loadCricketerData(FACTS_SHEET_MOST_RUNS, FACTS_SHEET_MOST_WKTS);
             List<BowlersDetails> cricketLeagueData = cricketLeagueAnalyser.letsSorting(Sorting.fields.BEST_BATING_BOWLING_AVG);
             Assert.assertEquals("MS Dhoni", cricketLeagueData.get(0).player);
-            Assert.assertEquals("Moeen Ali", cricketLeagueData.get(98).player);
         } catch (CricketLeagueException e) {
             Assert.assertEquals(CricketLeagueException.ExceptionType.FILE_PROBLEM, e.type);
         }

@@ -1,8 +1,12 @@
 package com.bridgelabz;
+//
+//import com.bridgeLab.CSVBuilderException;
+//import com.bridgeLab.CsvBuilderFactory;
+//import com.bridgeLab.ICSVBuilder;
 
-import com.bridgeLab.CSVBuilderException;
-import com.bridgeLab.CsvBuilderFactory;
-import com.bridgeLab.ICSVBuilder;
+import csvBuilder.CSVBuilderFactory;
+import csvBuilder.CsvBuilderException;
+import csvBuilder.ICSVBuilder;
 
 import java.io.IOException;
 import java.io.Reader;
@@ -20,8 +24,8 @@ public abstract class CricketAdapter {
         Map<String,CricketLeagueDAO> cricketLeagueDetails = new HashMap<>();
 
         try (Reader reader = Files.newBufferedReader(Paths.get(String.valueOf(csvFilePath)))) {
-            ICSVBuilder csvBuilder = CsvBuilderFactory.createCSVBuilder();
-            Iterator<E> csvIterator = csvBuilder.getCSVIterator(reader, sourceClass);
+            ICSVBuilder csvBuilder = CSVBuilderFactory.createCSVBuilder();
+            Iterator<E> csvIterator = csvBuilder.getCSVFileIterator((reader), sourceClass);
             Iterable<E> csvIterable = () -> csvIterator;
 
             if (sourceClass.getName().equals("com.bridgelabz.BatsmanDetails")) {
@@ -39,7 +43,7 @@ public abstract class CricketAdapter {
                     CricketLeagueException.ExceptionType.FILE_PROBLEM);
         } catch (RuntimeException e) {
             throw new CricketLeagueException(e.getMessage(), CricketLeagueException.ExceptionType.FILE_PROBLEM);
-        } catch (CSVBuilderException e) {
+        } catch (CsvBuilderException e) {
             throw new CricketLeagueException(e.getMessage(), e.type.name());
         }
 

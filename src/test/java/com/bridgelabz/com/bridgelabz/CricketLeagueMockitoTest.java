@@ -1,9 +1,6 @@
 package com.bridgelabz.com.bridgelabz;
 
-import com.bridgelabz.AdapterFactory;
-import com.bridgelabz.CricketLeagueAnalyser;
-import com.bridgelabz.CricketLeagueDAO;
-import com.bridgelabz.CricketLeagueException;
+import com.bridgelabz.*;
 import org.junit.Assert;
 import org.junit.Rule;
 import org.junit.Test;
@@ -21,7 +18,7 @@ public class CricketLeagueMockitoTest {
     public String FACTS_SHEET_MOST_RUNS = "./src/test/resources/IPLFactSheetRuns.csv";
 
     @Mock
-    AdapterFactory adapterFactoryMock;
+    AdapterFactoryToMock adapterFactoryMock;
 
     @Rule
     public MockitoRule mockitoRule = new MockitoJUnit().rule();
@@ -34,8 +31,6 @@ public class CricketLeagueMockitoTest {
         CricketLeagueAnalyser cricketLeagueAnalyser = new CricketLeagueAnalyser(CricketLeagueAnalyser.CricketerType.BATING,adapterFactoryMock);
         when(adapterFactoryMock.getCricketerData(CricketLeagueAnalyser.CricketerType.BATING,FACTS_SHEET_MOST_RUNS)).thenReturn(data);
         int cricketLeagueData = cricketLeagueAnalyser.loadCricketerData(FACTS_SHEET_MOST_RUNS);
-        System.out.println(data);
         Assert.assertEquals(1, cricketLeagueData);
     }
-
 }

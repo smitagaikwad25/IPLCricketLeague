@@ -5,23 +5,22 @@ import java.util.stream.Collectors;
 
 public class CricketLeagueAnalyser {
 
-
     public enum CricketerType {
         BATING, BOWLER, BATING_BOWLER
     }
 
     private CricketerType cricketerType;
-    AdapterFactory adapterFactory;
+    AdapterFactoryToMock  adapterFactory;
 
     Map<String, CricketLeagueDAO> cricketLeagueDetails = new HashMap<>();
     ;
 
     public CricketLeagueAnalyser(CricketerType cricketerType) {
         this.cricketerType = cricketerType;
-        adapterFactory = new AdapterFactory();
+        adapterFactory = new AdapterFactoryToMock();
     }
 
-    public CricketLeagueAnalyser(CricketerType cricketerType, AdapterFactory adapterFactory) {
+    public CricketLeagueAnalyser(CricketerType cricketerType, AdapterFactoryToMock adapterFactory) {
         this.cricketerType = cricketerType;
         this.adapterFactory = adapterFactory;
     }
